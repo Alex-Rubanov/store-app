@@ -4,9 +4,7 @@ import { authRoutes, publicRoutes } from '../routes';
 import { Context } from '..';
 
 export default function AppRouter() {
-    const {user} = useContext(Context);
-
-    console.log(user);
+  const {user} = useContext(Context);
 
   return (
     <Switch>
