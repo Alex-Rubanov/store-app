@@ -13,7 +13,7 @@ root.render(
 
 <Context.Provider value={{
   user: new UserStore(),
-  devices: new DeviceStore()
+  device: new DeviceStore()
 }}>
   <App />
 </Context.Provider>

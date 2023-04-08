@@ -1,22 +1,29 @@
 import {makeAutoObservable} from 'mobx';
+import template from '../assets/template-img.jpg';
 
 export default class DeviceStore {
     constructor() {
         this._types = [
             {id: 1, name: 'Refrigerators'},
-            {id: 2, name: 'Smartphones'}
+            {id: 2, name: 'Smartphones'},
+            {id: 3, name: 'Laptops'},
+            {id: 4, name: 'Tv\'s'},
         ];
         this._brands = [
             {id: 1, name: 'Samsung'},
-            {id: 2, name: 'Apple'}
+            {id: 2, name: 'Apple'},
+            {id: 3, name: 'Lenovo'},
+            {id: 4, name: 'Huawei'},
         ];
         this._devices = [
-            {id: 1, name: 'Iphone 12 pro', price: 1500, rating: 5, img: 'https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/swappie-iphone-12-pro-max-graphite-back.png?v=26'},
-            {id: 2, name: 'Iphone 12 pro', price: 1500, rating: 5, img: 'https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/swappie-iphone-12-pro-max-graphite-back.png?v=26'},
-            {id: 3, name: 'Iphone 12 pro', price: 1500, rating: 5, img: 'https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/swappie-iphone-12-pro-max-graphite-back.png?v=26'},
-            {id: 4, name: 'Iphone 12 pro', price: 1500, rating: 5, img: 'https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/swappie-iphone-12-pro-max-graphite-back.png?v=26'},
-            {id: 5, name: 'Iphone 12 pro', price: 1500, rating: 5, img: 'https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/swappie-iphone-12-pro-max-graphite-back.png?v=26'}
+            {id: 1, name: 'Iphone 12 pro', price: 1500, rating: 5, img: template},
+            {id: 2, name: 'Iphone 12 pro', price: 1500, rating: 5, img: template},
+            {id: 3, name: 'Iphone 12 pro', price: 1500, rating: 5, img: template},
+            {id: 4, name: 'Iphone 12 pro', price: 1500, rating: 5, img: template},
+            {id: 5, name: 'Iphone 12 pro', price: 1500, rating: 5, img: template}
         ]
+        this._selectedType = {};
+        this._selectedBrand = {};
         makeAutoObservable(this);
     }
 
@@ -32,6 +39,14 @@ export default class DeviceStore {
         this._devices = devices;
     }
 
+    setSelectedType(type) {
+        this._selectedType = type;
+    }
+
+    setSelectedBrand(brand) {
+        this._selectedBrand = brand;
+    }
+
     get types() {
         return this._types;
     }
@@ -42,5 +57,13 @@ export default class DeviceStore {
 
     get devices() {
         return this._devices;
+    }
+
+    get selectedType() {
+        return this._selectedType;
+    }
+
+    get selectedBrand() {
+        return this._selectedBrand;
     }
 }
