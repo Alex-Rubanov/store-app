@@ -1,13 +1,17 @@
-import React, { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Modal, Form, Button, Dropdown, Col, Row } from 'react-bootstrap';
 import { Context } from '../..';
 
 function CreateDevice({show, onHide}) {
     const {device} = useContext(Context);
-    const [info, setInfo] = useContext([]);
+    const [info, setInfo] = useState([]);
 
     const addInfo = () => {
-        setInfo([...info, {title: '', desccription: '', number: DataTransfer.now()}]);
+        setInfo([...info, {title: '', description: '', number: Date.now()}]);
+    }
+
+    const removeInfo = (number) => {
+        setInfo(info.filter(i => i.number !== number));
     }
 
   return (
@@ -23,7 +27,7 @@ function CreateDevice({show, onHide}) {
         </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <Form>
+            <Form className="p-2">
                 <Dropdown className="mt-2 mb-2">
                     <Dropdown.Toggle>Choose type</Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -53,6 +57,7 @@ function CreateDevice({show, onHide}) {
                     className="mt-3"
                     type="file"
                 />
+                <br/>
                 <Button 
                     className="mt-4"
                     onClick={addInfo}
@@ -60,22 +65,27 @@ function CreateDevice({show, onHide}) {
                     Add new property
                 </Button>
                 {info.map(i =>
-                    <Row className='mt-4'>
-                        <Col md={4}>
+                    <Row className='mt-3' key={i.number}>
+                        <Col md={5}>
                             <Form.Control 
                                 placeholder='Enter name of property...'
                             />
                         </Col>
-                        <Col md={4}>
+                        <Col md={5}>
                             <Form.Control 
                                 placeholder='Enter description...'
+                                className="p-2"
                             />
                         </Col>
-                        <Button
-                            variant='outline-danger'
-                        >
-                            Delete
-                        </Button>
+                        <Col md={2}>
+                            <Button
+                                variant='outline-danger'
+                                className="p-2"
+                                onClick={() => removeInfo(i.number)}
+                            >
+                                Delete
+                            </Button>
+                        </Col>
                     </Row>
                 )}
             </Form>
