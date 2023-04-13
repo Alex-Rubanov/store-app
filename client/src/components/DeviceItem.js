@@ -1,7 +1,8 @@
+import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { Card, Col, Image } from "react-bootstrap";
 import star from '../assets/star.svg';
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { DEVICE_ROUTE } from "../utils/consts";
 
 const DeviceItem = observer(({device}) => {
@@ -14,7 +15,7 @@ const DeviceItem = observer(({device}) => {
                 border='light'
                 onClick={() => history.push(DEVICE_ROUTE + '/' + device.id)}
             >
-                <Image width={150} height={150} src={device.img}/>
+                <Image style={{objectFit: 'contain'}} width={150} height={150} src={process.env.REACT_APP_API_URL + device.img}/>
                 <div className="d-flex justify-content-between mt-1 text-black-50">
                     <div>Samsung...</div>
                     <div className="d-flex align-items-center">

@@ -1,17 +1,25 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { Button, Card, Col, Container, Image, Row } from 'react-bootstrap';
-import template from '../assets/template-img.jpg';
 import star from '../assets/rating-star.svg';
 import {iphonePro12} from '../utils/tempDescr';
+import { useParams } from 'react-router-dom';
+import { fetchOneDevice } from '../http/deviceApi';
+
 
 export default function DevicePage() {
-  const device = {id: 1, name: 'Iphone 12 pro', price: '1500', rating: 5, img: template};
+  const {id} = useParams();
+  const [device, setDevice] = useState({info : []});
+
+  useEffect(() => {
+      fetchOneDevice(id)
+          .then(data => setDevice(data));
+  }, []);
 
   return (
     <Container className="mt-3">
       <Row>
         <Col md={4}>
-          <Image width={300} height={300} src={device.img} />
+          <Image style={{objectFit: 'contain'}} width={300} height={300} src={process.env.REACT_APP_API_URL + device.img} />
         </Col>       
           <Col md={4}>
             <Row className="d-flex flex-column align-items-center" >
