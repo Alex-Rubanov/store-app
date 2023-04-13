@@ -3,12 +3,7 @@ import template from '../assets/template-img.jpg';
 
 export default class DeviceStore {
     constructor() {
-        this._types = [
-            {id: 1, name: 'Refrigerators'},
-            {id: 2, name: 'Smartphones'},
-            {id: 3, name: 'Laptops'},
-            {id: 4, name: 'Tv\'s'},
-        ];
+        this._types = [];
         this._brands = [
             {id: 1, name: 'Samsung'},
             {id: 2, name: 'Apple'},
