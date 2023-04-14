@@ -7,6 +7,7 @@ import { useContext, useEffect , useState} from 'react';
 import { Context } from '.';
 import { check } from './http/userApi';
 import { Spinner } from 'react-bootstrap';
+import Pages from './components/Pages';
 
 const App = observer(() => {
   const {user} = useContext(Context);
@@ -15,7 +16,7 @@ const App = observer(() => {
   useEffect(() => {
     check()
       .then(data => {
-        user.setUser(true);
+        user.setUser(data);
         user.setIsAuth(true);
       })
       .finally(() => setLoading(false));

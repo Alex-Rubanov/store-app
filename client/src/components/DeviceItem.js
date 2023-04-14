@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { Card, Col, Image } from "react-bootstrap";
 import star from '../assets/star.svg';
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { DEVICE_ROUTE } from "../utils/consts";
 
 const DeviceItem = observer(({device}) => {
