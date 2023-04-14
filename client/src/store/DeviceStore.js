@@ -1,17 +1,10 @@
 import {makeAutoObservable} from 'mobx';
-import template from '../assets/template-img.jpg';
 
 export default class DeviceStore {
     constructor() {
         this._types = [];
         this._brands = [];
-        this._devices = [
-            {id: 1, name: 'Iphone 12 pro', price: 1500, rating: 5, img: template},
-            {id: 2, name: 'Iphone 12 pro', price: 1500, rating: 5, img: template},
-            {id: 3, name: 'Iphone 12 pro', price: 1500, rating: 5, img: template},
-            {id: 4, name: 'Iphone 12 pro', price: 1500, rating: 5, img: template},
-            {id: 5, name: 'Iphone 12 pro', price: 1500, rating: 5, img: template}
-        ]
+        this._devices = []
         this._selectedType = {};
         this._selectedBrand = {};
         makeAutoObservable(this);

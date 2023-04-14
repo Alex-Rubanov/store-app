@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Button, Card, Col, Container, Image, Row } from 'react-bootstrap';
 import star from '../assets/rating-star.svg';
-import {iphonePro12} from '../utils/tempDescr';
 import { useParams } from 'react-router-dom';
 import { fetchOneDevice } from '../http/deviceApi';
 
@@ -9,6 +8,7 @@ import { fetchOneDevice } from '../http/deviceApi';
 export default function DevicePage() {
   const {id} = useParams();
   const [device, setDevice] = useState({info : []});
+  console.log(device)
 
   useEffect(() => {
       fetchOneDevice(id)
@@ -46,12 +46,12 @@ export default function DevicePage() {
 
       <Row className='d-flex flex-column m-4'>
         <h1  style={{textAlign: 'center'}}>Technical Specifications</h1>
-        {Object.entries(iphonePro12).map(([info, description], index) =>
+        {device.info.map((info, index) =>
           <Row 
-            key={description}
+            key={info.id}
             style={{background: index % 2 === 0 ? 'lightgray' : 'transparent', padding: 10}}
           >
-            <h4>{info} : {description}</h4>
+            <h4>{info.title} : {info.description}</h4>
           </Row>
         )}
       </Row>
